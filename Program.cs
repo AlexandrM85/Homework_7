@@ -79,11 +79,48 @@ if (a >= columns || b >= rows)
 else
 {
     rows = a; columns = b;
-    int n = arr[b,a];
-    Console.WriteLine(n);
+    int c = arr[b,a];
+    Console.WriteLine(c);
 }
 
+// Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+Console.WriteLine("--------------Задача №52.--------------");
+int m = 3;
+int n = 4;
+int[,] matrix = GetArray3(m, n, 0, 10);
+double[] sum = new double[n];
+PrintArray3(matrix);
 
+int[,] GetArray3(int m, int n, int minValue, int maxValue)
+{
+    int[,] result = new int[m,n];
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            result[i,j] = new Random().Next(minValue, maxValue + 1);
+        }
+    }
+    return result;
+}
 
+void PrintArray3(int[,] Array)
+{
+    for (int i = 0; i < Array.GetLength(0); i++)
+    {
+        for (int j = 0; j < Array.GetLength(1); j++)
+        {
+            Console.Write(Array[i, j] + "\t");
+        }
+        Console.WriteLine();
+    }
+}
 
-
+for (int i = 0; i < n; i++)
+{
+    for (int j = 0; j < m; j++)
+    {
+        sum[i] += matrix[j,i];
+    }
+    Console.Write($"{(sum[i] / m):f1}  |  ");
+}
